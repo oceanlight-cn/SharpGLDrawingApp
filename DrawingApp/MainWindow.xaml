@@ -1,0 +1,57 @@
+﻿<Window x:Class="DrawingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:gl="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
+        xmlns:local="clr-namespace:DrawingApp"
+        Title="Drawing App" Height="450" Width="800">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="文件">
+                <!--<MenuItem Header="导入图像" Click="ImportImage_Click"/>-->
+                <MenuItem Header="导出图像" Click="ExportImage_Click"/>
+            </MenuItem>
+            <MenuItem Header="操作">
+                <MenuItem Header="新增图层" Click="AddLayer_Click"/>
+                <!--<MenuItem Header="删除图层" Click="DeleteLayer_Click"/>-->
+            </MenuItem>
+        </Menu>
+        <Grid  Grid.Row="1">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        
+
+        <!-- 工具箱 -->
+        <StackPanel Grid.Column="0" Background="LightGray" Orientation="Vertical">
+            
+            <Button Content="点" Click="ToolButton_Click" Tag="Point" />
+            <Button Content="线段" Click="ToolButton_Click" Tag="Line" />
+            <Button Content="矩形" Click="ToolButton_Click" Tag="Rectangle" />
+            <!--<Button Content="旋转矩形" Click="ToolButton_Click" Tag="RotatedRectangle" />
+            <Button Content="多边形" Click="ToolButton_Click" Tag="Polygon" />-->
+            <Button Content="圆" Click="ToolButton_Click" Tag="Circle" />
+            <!--<Button Content="椭圆" Click="ToolButton_Click" Tag="Ellipse" />
+            <Button Content="圆弧" Click="ToolButton_Click" Tag="Arc" />-->
+        </StackPanel>
+
+        <!-- 画图区域 -->
+        <Grid Grid.Column="1">
+                <gl:OpenGLControl x:Name="openGLControl"  OpenGLInitialized="openGLControl_OpenGLInitialized"  OpenGLDraw="openGLControl_OpenGLDraw" Resized="openGLControl1_Resized" MouseDown="openGLControl_MouseDown" />
+        </Grid>
+
+        <StackPanel x:Name="layerPanel"  Grid.Column="2" Orientation="Vertical">
+            <!-- 图层管理内容 -->
+            </StackPanel>
+
+    </Grid>
+    </Grid>
+</Window>
